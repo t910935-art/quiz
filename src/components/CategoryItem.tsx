@@ -14,6 +14,7 @@ const CategoryItem = ({ icon, title, onClick, active }: CategoryItemProps) => {
 
   return (
     <Flex
+      onClick={onClick}
       ref={ref}
       direction={"column"}
       align={"center"}
