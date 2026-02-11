@@ -4,14 +4,14 @@ import MainLayout from "./layout/MainLayout";
 import MantineProvider from "./providers/MantineUIProvider";
 
 import "./styles/globale.css";
+import QuizPage from "./pages/QuizPage";
 //import CategoryPage from "./pages/CategoryPage";
-import QuizStartPage from "./pages/QuizStartPage";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <MantineProvider>
       <MainLayout>
-        <QuizStartPage />
+        <QuizPage />
       </MainLayout>
     </MantineProvider>
   </StrictMode>,
