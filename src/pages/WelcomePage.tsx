@@ -2,6 +2,7 @@ import { Button, Grid, Text, TextInput } from "@mantine/core";
 import { FaCheckCircle } from "react-icons/fa";
 import { GiBrain, GiTrophy } from "react-icons/gi";
 import { IoFlash } from "react-icons/io5";
+import { Link } from "react-router";
 
 import QuizContainer from "../components/QuizContainer";
 
@@ -40,7 +41,7 @@ const WelcomePage = () => {
         size="lg"
         rightSection={<FaCheckCircle color="green" />}
       />
-      <a href="/category">
+      <Link to="/category">
         <Button
           variant="gradiant"
           miw={"200px"}
@@ -50,7 +51,7 @@ const WelcomePage = () => {
         >
           Start Quiz
         </Button>
-      </a>
+      </Link>
     </QuizContainer>
   );
 };

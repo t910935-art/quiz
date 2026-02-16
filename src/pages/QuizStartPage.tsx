@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router";
 import QuizContainer from "../components/QuizContainer";
 import { Button, Text } from "@mantine/core";
 
 const QuizStartPage = () => {
+  const navigate = useNavigate();
+
   return (
     <QuizContainer minHeight="300px">
       <Text
@@ -22,6 +25,7 @@ const QuizStartPage = () => {
       <Button
         variant="gradient"
         miw={"200px"}
+        onClick={() => navigate("/start-quiz")}
         size="lg"
         radius={"xl"}
         gradient={{ from: "red", to: "black", deg: 45 }}

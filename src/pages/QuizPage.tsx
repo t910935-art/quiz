@@ -11,7 +11,17 @@ function QuizPage() {
       <Text fz={"1.5rm"} ta={"center"}>
         1/10
       </Text>
-      <QuizCard />
+      <QuizCard
+        question={""}
+        options={[]}
+        correctAnswer={""}
+        onAnswer={function (answer: string): void {
+          throw new Error("Function not implemented.");
+        }}
+        onNext={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+      />
     </QuizContainer>
   );
 }

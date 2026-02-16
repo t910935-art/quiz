@@ -10,6 +10,7 @@ import WelcomePage from "./pages/WelcomePage";
 import { Center } from "@mantine/core";
 import CategoryPage from "./pages/CategoryPage";
 import QuizStartPage from "./pages/QuizStartPage";
+import QuizResults from "./pages/QuizResults";
 //import CategoryPage from "./pages/CategoryPage";
 
 createRoot(document.getElementById("root")!).render(
@@ -22,6 +23,7 @@ createRoot(document.getElementById("root")!).render(
             <Route path="/category" element={<CategoryPage />} />
             <Route path="/quiz-info" element={<QuizStartPage />} />
             <Route path="/start-quiz" element={<QuizPage />} />
+            <Route path="/result" element={<QuizResults />} />
           </Routes>
         </BrowserRouter>
       </MainLayout>

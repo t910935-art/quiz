@@ -6,6 +6,7 @@ import { IoCodeSlashSharp, IoEarthOutline } from "react-icons/io5";
 import { GiMaterialsScience } from "react-icons/gi";
 import { FaFilm } from "react-icons/fa";
 import { GrTechnology } from "react-icons/gr";
+import { useNavigate } from "react-router";
 
 const categories = [
   {
@@ -37,6 +38,12 @@ const categories = [
 ];
 
 const CategoryPage = () => {
+  const navigate = useNavigate();
+
+  const handleStartQuiz = () => {
+    navigate("/quiz-info");
+  };
+
   return (
     <QuizContainer>
       <Text
@@ -58,7 +65,17 @@ const CategoryPage = () => {
           </Grid.Col>
         ))}
       </Grid>
-      <Button mt={"xl"}>Start</Button>
+      <Button
+        variant="gradient"
+        miw={"200px"}
+        onClick={handleStartQuiz}
+        size="lg"
+        radius={"xl"}
+        gradient={{ from: "red", to: "deeppink", deg: 45 }}
+        mt={"xl"}
+      >
+        Start Quiz
+      </Button>
     </QuizContainer>
   );
 };
