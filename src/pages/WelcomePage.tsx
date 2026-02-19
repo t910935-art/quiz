@@ -3,10 +3,13 @@ import { FaCheckCircle } from "react-icons/fa";
 import { GiBrain, GiTrophy } from "react-icons/gi";
 import { IoFlash } from "react-icons/io5";
 import { Link } from "react-router";
+import useQuizStore from "../store/quize-store";
 
 import QuizContainer from "../components/QuizContainer";
 
 const WelcomePage = () => {
+  const { userName, setUserName } = useQuizStore();
+
   return (
     <QuizContainer>
       <Text
@@ -16,7 +19,7 @@ const WelcomePage = () => {
         fz={{ base: "2rem", md: "3rem", lg: "2rem" }}
         gradient={{ from: "red", to: "deeppink", deg: 45 }}
       >
-        - Welcome to Quizify Pro -
+        - working Quizify Pro -{userName}
       </Text>
       <Text ta={"center"} fz={"1.5rem"} fw={"light"} c={"dimmed"}>
         Challenge Your Mind, Expand Your Knowledge
@@ -39,19 +42,21 @@ const WelcomePage = () => {
         radius={"xl"}
         w={"300px"}
         size="lg"
+        value={userName}
+        onChange={(e) => setUserName(e.target.value)}
         rightSection={<FaCheckCircle color="green" />}
       />
-      <Link to="/category">
-        <Button
-          variant="gradiant"
-          miw={"200px"}
-          size="lg"
-          radius={"xl"}
-          gradient={{ from: "red", to: "deeppink" }}
-        >
-          Start Quiz
-        </Button>
-      </Link>
+
+      <Button
+        disabled={!userName}
+        variant="gradiant"
+        miw={"200px"}
+        size="lg"
+        radius={"xl"}
+        gradient={{ from: "red", to: "deeppink" }}
+      >
+        Start Quiz
+      </Button>
     </QuizContainer>
   );
 };
