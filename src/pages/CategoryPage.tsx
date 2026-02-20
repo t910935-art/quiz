@@ -7,6 +7,7 @@ import { GiMaterialsScience } from "react-icons/gi";
 import { FaFilm } from "react-icons/fa";
 import { GrTechnology } from "react-icons/gr";
 import { useNavigate } from "react-router";
+import { useState } from "react";
 
 const categories = [
   {
@@ -39,6 +40,7 @@ const categories = [
 
 const CategoryPage = () => {
   const navigate = useNavigate();
+  const [quizCategory, setQuizCategory] = useState<string | null>(null);
 
   const handleStartQuiz = () => {
     navigate("/quiz-info");
@@ -59,8 +61,10 @@ const CategoryPage = () => {
             <CategoryItem
               icon={category.icon}
               title={category.title}
-              onClick={() => {}}
-              active
+              onClick={() => {
+                setQuizCategory(category.title);
+              }}
+              active={category.title === quizCategory}
             />
           </Grid.Col>
         ))}
