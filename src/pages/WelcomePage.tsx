@@ -4,11 +4,14 @@ import { GiBrain, GiTrophy } from "react-icons/gi";
 import { IoFlash } from "react-icons/io5";
 import { Link } from "react-router";
 import useQuizStore from "../store/quize-store";
+import { useNavigate } from "react-router";
 
 import QuizContainer from "../components/QuizContainer";
 
 const WelcomePage = () => {
   const { userName, setUserName } = useQuizStore();
+
+  const navigate = useNavigate();
 
   return (
     <QuizContainer>
@@ -50,12 +53,15 @@ const WelcomePage = () => {
       <Button
         disabled={!userName}
         variant="gradiant"
+        onClick={() => {
+          navigate("/category");
+        }}
         miw={"200px"}
         size="lg"
         radius={"xl"}
         gradient={{ from: "red", to: "deeppink" }}
       >
-        Start Quiz
+        select category
       </Button>
     </QuizContainer>
   );
