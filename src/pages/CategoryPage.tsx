@@ -8,6 +8,13 @@ import { FaFilm } from "react-icons/fa";
 import { GrTechnology } from "react-icons/gr";
 import { useNavigate } from "react-router";
 import { useState } from "react";
+import { technologies } from "../data/technologies";
+import { generalKnowledge } from "../data/generalKnowledge";
+import { movies } from "../data/movies";
+import { geography } from "../data/geography";
+import { programming } from "../data/programming";
+import { science } from "../data/science";
+import useQuizStore from "../store/quize-store";
 
 const categories = [
   {
@@ -38,9 +45,20 @@ const categories = [
   },
 ];
 
+const quizData = {
+  "General Knowledge": generalKnowledge,
+  Geography: geography,
+  Science: science,
+  Movies: movies,
+  Technologies: technologies,
+  Programming: programming,
+};
+
 const CategoryPage = () => {
   const navigate = useNavigate();
+  const { setQuizData, quizData: data } = useQuizStore();
   const [quizCategory, setQuizCategory] = useState<string | null>(null);
+  console.log({ quizData });
 
   const handleStartQuiz = () => {
     navigate("/quiz-info");
@@ -53,7 +71,9 @@ const CategoryPage = () => {
         fw={"bold"}
         fz={{ base: "2rm", md: "3rem", lg: "2rem" }}
       >
-        Categoty
+        {quizCategory
+          ? `Selected Category: ${quizCategory}`
+          : "Select a Category"}
       </Text>
       <Grid miw={"90%"}>
         {categories.map((category) => (
@@ -63,6 +83,7 @@ const CategoryPage = () => {
               title={category.title}
               onClick={() => {
                 setQuizCategory(category.title);
+                setQuizData(quizData[category.title]);
               }}
               active={category.title === quizCategory}
             />
