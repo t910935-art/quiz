@@ -14,7 +14,7 @@ import { movies } from "../data/movies";
 import { geography } from "../data/geography";
 import { programming } from "../data/programming";
 import { science } from "../data/science";
-import useQuizStore from "../store/quize-store";
+import useQuizStore, { type QuizCategory } from "../store/quize-store";
 
 const categories = [
   {
@@ -45,20 +45,20 @@ const categories = [
   },
 ];
 
-const quizData = {
+const quizData: Record<string, QuizCategory> = {
   "General Knowledge": generalKnowledge,
   Geography: geography,
   Science: science,
   Movies: movies,
   Technologies: technologies,
-  Programming: programming,
+  programming: programming,
 };
 
 const CategoryPage = () => {
   const navigate = useNavigate();
   const { setQuizData, quizData: data } = useQuizStore();
   const [quizCategory, setQuizCategory] = useState<string | null>(null);
-  console.log({ quizData });
+  console.log({ data });
 
   const handleStartQuiz = () => {
     navigate("/quiz-info");
@@ -83,7 +83,7 @@ const CategoryPage = () => {
               title={category.title}
               onClick={() => {
                 setQuizCategory(category.title);
-                setQuizData(quizData[category.title]);
+                setQuizData(quizData[quizCategory as keyof typeof quizData]);
               }}
               active={category.title === quizCategory}
             />
