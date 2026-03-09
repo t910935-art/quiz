@@ -30,7 +30,7 @@ export interface QuizState {
 
   // Actions to update the state
   setUserName: (name: string) => void;
-  setUserAnswer: (answer: UserAnswer) => void;
+  setUserAnswer: (answer: UserAnswer[]) => void;
   setQuizData: (data: QuizCategory) => void;
   resetUserAnswers: () => void;
 }

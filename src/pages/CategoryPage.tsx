@@ -7,7 +7,7 @@ import { GiMaterialsScience } from "react-icons/gi";
 import { FaFilm } from "react-icons/fa";
 import { GrTechnology } from "react-icons/gr";
 import { useNavigate } from "react-router";
-import { useState } from "react";
+
 import { technologies } from "../data/technologies";
 import { generalKnowledge } from "../data/generalKnowledge";
 import { movies } from "../data/movies";
@@ -57,10 +57,14 @@ const quizData: Record<string, QuizCategory> = {
 const CategoryPage = () => {
   const navigate = useNavigate();
   const { setQuizData, quizData: data } = useQuizStore();
-  const [quizCategory, setQuizCategory] = useState<string | null>(null);
+
   console.log({ data });
 
   const handleStartQuiz = () => {
+    if (!data.category) {
+      alert("Please select a categ");
+      return;
+    }
     navigate("/quiz-info");
   };
 
@@ -71,8 +75,8 @@ const CategoryPage = () => {
         fw={"bold"}
         fz={{ base: "2rm", md: "3rem", lg: "2rem" }}
       >
-        {quizCategory
-          ? `Selected Category: ${quizCategory}`
+        {data.category
+          ? `Selected Category: ${data.category}`
           : "Select a Category"}
       </Text>
       <Grid miw={"90%"}>
@@ -82,10 +86,9 @@ const CategoryPage = () => {
               icon={category.icon}
               title={category.title}
               onClick={() => {
-                setQuizCategory(category.title);
-                setQuizData(quizData[quizCategory as keyof typeof quizData]);
+                setQuizData(quizData[category.title as keyof typeof quizData]);
               }}
-              active={category.title === quizCategory}
+              active={category.title === data.category}
             />
           </Grid.Col>
         ))}

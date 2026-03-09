@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router";
 import QuizContainer from "../components/QuizContainer";
 import { Button, Text } from "@mantine/core";
+import useQuizStore from "../store/quize-store";
 
 const QuizStartPage = () => {
+  const { quizData } = useQuizStore();
   const navigate = useNavigate();
 
   return (
@@ -13,15 +15,15 @@ const QuizStartPage = () => {
         fz={{ base: "2reù", md: "3rem", lg: "2rem" }}
         gradient={{ from: "red", to: "deeppink", deg: 45 }}
       >
-        Quiz QuizStartPage
+        quiz start page
       </Text>
       <Text fw={500} fz={16}>
-        General
+        {quizData.title}
       </Text>
       <Text fw={500} fz={16}>
-        text your quiz start page
+        {quizData.description}
       </Text>
-      <Text>correct</Text>
+      <Text>get {quizData.passScore} correct to pass </Text>
       <Button
         variant="gradient"
         miw={"200px"}

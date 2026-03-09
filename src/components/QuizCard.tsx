@@ -6,25 +6,31 @@ import { FaA, FaArrowRight } from "react-icons/fa6";
 interface QuizCardProps {
   question: string;
   options: string[];
+  isLastQuestion: boolean;
   correctAnswer: string;
   onAnswer: (answer: string) => void;
   onNext: () => void;
 }
 
-const SAMPLE_QUESTION = ["Option 1", "Option 2", "Option 3", "Option 4"];
-
-const QuizCard = ({}: QuizCardProps) => {
+const QuizCard = ({
+  question,
+  options,
+  isLastQuestion,
+  onAnswer,
+  onNext,
+}: QuizCardProps) => {
   const [selectedAnswer, setSelectedAnswer] = useState<string>("");
   return (
     <Flex miw={"90%"} direction={"column"} gap={10}>
       <Text size={"xl"} fw={"500"} mt={10} mb={10}>
-        question
+        {question}
       </Text>
       <Flex direction={"column"} gap={10}>
-        {SAMPLE_QUESTION.map((option, index) => (
+        {options.map((option, index) => (
           <Button
             onClick={() => {
               setSelectedAnswer(option);
+              onAnswer(option);
             }}
             c={selectedAnswer === option ? "white" : "gray"}
             key={index}
@@ -42,9 +48,10 @@ const QuizCard = ({}: QuizCardProps) => {
             gradient={{ from: "red", to: "deeppink" }}
             radius={"xl"}
             size={"lg"}
+            onClick={onNext}
             rightSection={<FaArrowRight />}
           >
-            Next
+            {isLastQuestion ? "Submit" : "Next"}
           </Button>
         </Flex>
       </Flex>
