@@ -5,11 +5,13 @@ import useQuizStore from "../store/quize-store";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
+//14 -Storing user answers part - 2
+
 function QuizPage() {
   const { quizData, userAnswers, setUserAnswer } = useQuizStore();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const navigate = useNavigate();
-  console.log({ userAnswers });
+  const currentQuestion = quizData.quizzes[currentQuestionIndex];
 
   return (
     <QuizContainer>
@@ -20,15 +22,15 @@ function QuizPage() {
         {currentQuestionIndex + 1} / {quizData.quizzes.length}
       </Text>
       <QuizCard
-        // correctAnswer={quizData.quizzes[currentQuestionIndex].answer}
         onAnswer={(answer) => {
           if (userAnswers[currentQuestionIndex]?.answer === answer) return;
           const updateAnswers = [...userAnswers];
+
           updateAnswers[currentQuestionIndex] = {
-            question: quizData.quizzes[currentQuestionIndex].question,
+            question: currentQuestion.question,
             answer,
-            isCorrect: answer === quizData.quizzes[currentQuestionIndex].answer,
-            correctAnswer: quizData.quizzes[currentQuestionIndex].answer,
+            isCorrect: answer === currentQuestion.answer,
+            correctAnswer: currentQuestion.answer,
           };
           setUserAnswer(updateAnswers);
         }}
@@ -41,9 +43,9 @@ function QuizPage() {
             navigate("/result");
           }
         }}
-        options={quizData.quizzes[currentQuestionIndex].options}
-        question={quizData.quizzes[currentQuestionIndex].question}
-        correctAnswer={""}
+        options={currentQuestion.options}
+        question={currentQuestion.question}
+        correctAnswer={currentQuestion.answer}
       />
     </QuizContainer>
   );
