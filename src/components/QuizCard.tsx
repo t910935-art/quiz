@@ -7,7 +7,7 @@ interface QuizCardProps {
   question: string;
   options: string[];
   isLastQuestion: boolean;
-  correctAnswer: string;
+
   onAnswer: (answer: string) => void;
   onNext: () => void;
 }
@@ -16,6 +16,7 @@ const QuizCard = ({
   question,
   options,
   isLastQuestion,
+
   onAnswer,
   onNext,
 }: QuizCardProps) => {

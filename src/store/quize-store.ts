@@ -1,4 +1,3 @@
-// ...existing code...
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
@@ -33,6 +32,7 @@ export interface QuizState {
   setUserAnswer: (answer: UserAnswer[]) => void;
   setQuizData: (data: QuizCategory) => void;
   resetUserAnswers: () => void;
+  resetAll: () => void;
 }
 
 const useQuizStore = create<QuizState>()(
@@ -48,14 +48,24 @@ const useQuizStore = create<QuizState>()(
         quizzes: [],
       },
 
-      setUserName: (name: string) => set({ userName: name }),
-      setUserAnswer: (answer: UserAnswer) =>
-        set((state) => ({
-          userAnswers: [...state.userAnswers, answer],
-        })),
+      // Actions to update the state
 
+      setUserName: (name: string) => set({ userName: name }),
+      setUserAnswer: (answers: UserAnswer[]) => set({ userAnswers: answers }),
       setQuizData: (data: QuizCategory) => set({ quizData: data }),
       resetUserAnswers: () => set({ userAnswers: [] }),
+      resetAll: () =>
+        set({
+          userName: "",
+          userAnswers: [],
+          quizData: {
+            category: "",
+            title: "",
+            description: "",
+            passScore: 0,
+            quizzes: [],
+          },
+        }),
     }),
     {
       name: "quiz-storage",
@@ -65,4 +75,3 @@ const useQuizStore = create<QuizState>()(
 );
 
 export default useQuizStore;
-// ...existing code...

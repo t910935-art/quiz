@@ -45,7 +45,6 @@ function QuizPage() {
         }}
         options={currentQuestion.options}
         question={currentQuestion.question}
-        correctAnswer={currentQuestion.answer}
       />
     </QuizContainer>
   );
