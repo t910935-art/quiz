@@ -1,8 +1,4 @@
-import { Box } from "@mantine/core";
-
-interface MainLayoutProps {
-  children: React.ReactNode;
-}
+text
 
 const MainLayout = ({ children }: MainLayoutProps) => {
   return (
